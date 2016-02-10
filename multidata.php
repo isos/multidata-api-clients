@@ -5,8 +5,6 @@ $api		= "cars"; //persons, cars, services
 $method		= "getplateinfo"; //Ver catalogo de APIs
 
 $headr		= array();
-$headr[]	= 'Content-length: 0';
-$headr[]	= 'Content-type: application/json';
 $headr[]	= 'Authorization: '.$key;
 $url		= "http://api.multidatachile.com/".$api."/".$method."/".$plate;
 
