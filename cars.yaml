@@ -1,0 +1,159 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: MultiDATA API
+  description: Servicios de integracion MultiDATA Chile
+  version: "1.0.0"
+# the domain of the service
+host: api.multidatachile.cl
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /cars
+produces:
+  - application/xml
+paths:
+  '/getplateinfo/{plate}':
+    get:
+      summary: Información de un vehículo a partir de su patente.
+      description: |
+        El endpoint retorna informacion base sobre vehículos motorizados, marca,
+        modelo, año y revisión técnica si el dato esta disponible.
+      parameters:
+        - name: plate
+          in: path
+          description: Patente del vehículo
+          required: true
+          type: string
+      tags:
+        - getplateinfo
+      responses:
+        200:
+          description: An xml containing results
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Car'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/gettickets/{plate}':
+    get:
+      summary: Información policial de un vehículo a partir de su patente.
+      description: |
+        El endpoint retorna informacion policial sobre un vehículo, incluyendo
+        multas y reporte por robo.
+      parameters:
+        - name: plate
+          in: path
+          description: Patente del vehículo
+          required: true
+          type: string
+      tags:
+        - gettickets
+      responses:
+        200:
+          description: Descripción de registro multas
+          schema:
+            $ref: '#/definitions/Policial'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/getowners/{plate}':
+    get:
+      summary: Histórico de propietarios de un vehículo.
+      description: |
+        Listado de propietarios de un vehículo.
+      parameters:
+        - name: plate
+          in: path
+          description: Patente del vehículo
+          required: true
+          type: string
+      tags:
+        - getowners
+      responses:
+        200:
+          description: Listado de propietarios
+          schema:
+            $ref: '#/definitions/Propietarios'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Car:
+    type: object
+    properties:
+      Plate:
+        type: string
+        description: Identificador del vehículo
+      Class:
+        type: string
+        description: Tipo de vehículo
+      Color:
+        type: string
+        description: Color del vehículo
+      Maker:
+        type: string
+        description: Fabricante del vehículo
+      Model:
+        type: string
+        description: Modelo del vehículo
+      Year:
+        type: string
+        description: Año del vehículo
+      Chasis:
+        type: string
+        description: Número de chasis del vehículo
+      Motor:
+        type: string
+        description: Número de motor del vehículo
+      Service:
+        type: string
+        description: Datos de la revisión técnica
+      Blocked:
+        type: string
+        description: Indica si los datos han sido bloqueados a solicitud del propietario
+  Policial:
+    type: object
+    properties:
+      Plate:
+        type: string
+        description: Identificador del vehículo
+      Multas:
+        type: string
+        description: Cantidad de Multas
+      Records:
+        type: string
+        description: Registro de Multas
+      Stolen:
+        type: string
+        description: Indicador de reporte por robo
+      PTOTAL:
+        type: string
+        description: Indicador reportado por robo total
+  Propietarios:
+    type: object
+    properties:
+      Person:
+        type: string
+        description: Identificador de la persona
+      Company:
+        type: string
+        description: Identificador de la empresa
+      Name:
+        type: string
+        description: Nombre del propietario
+  Error:
+    type: object
+    properties:
+      Sts:
+        type: integer
+        format: int32
+      Src:
+        type: string
