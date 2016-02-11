@@ -1,0 +1,59 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: MultiDATA API
+  description: Servicios de integracion MultiDATA Chile
+  version: "1.0.0"
+# the domain of the service
+host: api.multidatachile.cl
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /persons
+produces:
+  - application/xml
+paths:
+  '/getname/{rut}':
+    get:
+      summary: Obtiene el nombre de una persona o empresa a partir del rut
+      description: |
+        El formato debe ser el (11111111-1) sin incluir puntos y letras deben ser mayúscula.
+      parameters:
+        - name: rut
+          in: path
+          description: Rut a buscar
+          required: true
+          type: string
+      tags:
+        - getname
+      responses:
+        200:
+          description: An xml containing results
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Persona'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Persona:
+    type: object
+    properties:
+      Name:
+        type: string
+        description: Nombre del propietario
+      Bloqueado:
+        type: string
+        description: Bloqueado por el propietario
+  Error:
+    type: object
+    properties:
+      Sts:
+        type: integer
+        format: int32
+      Src:
+        type: string
