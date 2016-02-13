@@ -64,29 +64,6 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-  '/gettickets/{plate}':
-    get:
-      summary: Información policial de un vehículo a partir de su patente (XML).
-      description: |
-        El endpoint retorna informacion policial sobre un vehículo, incluyendo
-        multas y reporte por robo en formato XML.
-      parameters:
-        - name: plate
-          in: path
-          description: Patente del vehículo
-          required: true
-          type: string
-      tags:
-        - gettickets
-      responses:
-        200:
-          description: Descripción de registro multas
-          schema:
-            $ref: '#/definitions/Policial'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
   '/jsongettickets/{plate}':
     get:
       summary: Información policial de un vehículo a partir de su patente (JSON).
@@ -110,11 +87,56 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+  '/gettickets/{plate}':
+    get:
+      summary: Información policial de un vehículo a partir de su patente (XML).
+      description: |
+        El endpoint retorna informacion policial sobre un vehículo, incluyendo
+        multas y reporte por robo en formato XML.
+      parameters:
+        - name: plate
+          in: path
+          description: Patente del vehículo
+          required: true
+          type: string
+      tags:
+        - gettickets
+      responses:
+        200:
+          description: Descripción de registro multas
+          schema:
+            $ref: '#/definitions/Policial'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  '/jsongetowners/{plate}':
+    get:
+      summary: Histórico de propietarios de un vehículo (JSON).
+      description: |
+        El endpoint retorna el listado de propietarios de un vehículo en formato JSON.
+      parameters:
+        - name: plate
+          in: path
+          description: Patente del vehículo
+          required: true
+          type: string
+      tags:
+        - jsongetowners
+      responses:
+        200:
+          description: Listado de propietarios
+          schema:
+            $ref: '#/definitions/Propietarios'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
   '/getowners/{plate}':
     get:
-      summary: Histórico de propietarios de un vehículo.
+      summary: Histórico de propietarios de un vehículo (XML).
       description: |
-        Listado de propietarios de un vehículo.
+        El endpoint retorna el listado de propietarios de un vehículo en formato XML.
       parameters:
         - name: plate
           in: path
