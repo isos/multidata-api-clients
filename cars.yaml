@@ -27,7 +27,7 @@ paths:
           required: true
           type: string
       tags:
-        - getplateinfo
+        - jsongetplateinfo
       responses:
         200:
           description: An json containing results
@@ -77,7 +77,7 @@ paths:
           required: true
           type: string
       tags:
-        - gettickets
+        - jsongettickets
       responses:
         200:
           description: Descripción de registro multas
@@ -122,7 +122,7 @@ paths:
           required: true
           type: string
       tags:
-        - getowners
+        - jsongetowners
       responses:
         200:
           description: Listado de propietarios
