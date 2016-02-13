@@ -18,8 +18,8 @@ paths:
     get:
       summary: Información de un vehículo a partir de su patente (JSON).
       description: |
-        El endpoint retorna un JSON con la informacion base sobre vehículos motorizados, marca,
-        modelo, año y revisión técnica si el dato esta disponible.
+        El endpoint retorna informacion base sobre vehículos motorizados, marca,
+        modelo, año y revisión técnica si el dato esta disponible en formato JSON.
       parameters:
         - name: plate
           in: path
@@ -30,7 +30,7 @@ paths:
         - jsongetplateinfo
       responses:
         200:
-          description: An json containing results
+          description: An xml containing results
           schema:
             type: array
             items:
@@ -43,8 +43,8 @@ paths:
     get:
       summary: Información de un vehículo a partir de su patente (XML).
       description: |
-        El endpoint retorna un XML con la informacion base sobre vehículos motorizados, marca,
-        modelo, año y revisión técnica si el dato esta disponible.
+        El endpoint retorna informacion base sobre vehículos motorizados, marca,
+        modelo, año y revisión técnica si el dato esta disponible en formato XML.
       parameters:
         - name: plate
           in: path
@@ -64,32 +64,9 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-    '/jsongettickets/{plate}':
-    get:
-      summary: El endpoint retorna un JSON con la información policial de un vehículo a partir de su patente.
-      description: |
-        El endpoint retorna informacion policial sobre un vehículo, incluyendo
-        multas y reporte por robo.
-      parameters:
-        - name: plate
-          in: path
-          description: Patente del vehículo
-          required: true
-          type: string
-      tags:
-        - jsongettickets
-      responses:
-        200:
-          description: Descripción de registro multas
-          schema:
-            $ref: '#/definitions/Policial'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
   '/gettickets/{plate}':
     get:
-      summary: El endpoint retorna un XML con la información policial de un vehículo a partir de su patente.
+      summary: Información policial de un vehículo a partir de su patente.
       description: |
         El endpoint retorna informacion policial sobre un vehículo, incluyendo
         multas y reporte por robo.
@@ -110,31 +87,9 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
-    '/jsongetowners/{plate}':
-    get:
-      summary: El endpoint retorna un JSON con el histórico de propietarios de un vehículo.
-      description: |
-        Listado de propietarios de un vehículo.
-      parameters:
-        - name: plate
-          in: path
-          description: Patente del vehículo
-          required: true
-          type: string
-      tags:
-        - jsongetowners
-      responses:
-        200:
-          description: Listado de propietarios
-          schema:
-            $ref: '#/definitions/Propietarios'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Error'
   '/getowners/{plate}':
     get:
-      summary: El endpoint retorna un XML con el histórico de propietarios de un vehículo.
+      summary: Histórico de propietarios de un vehículo.
       description: |
         Listado de propietarios de un vehículo.
       parameters:
