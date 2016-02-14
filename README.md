@@ -30,3 +30,5 @@ Una vez verificada tu API Key, puedes descargar uno de nuestros ejemplos. Modifi
 
 ### Monitorea el uso de tu llave
 Dado que el uso de la API está restringido, puedes ingresar a tu cuenta para monitorear el uso, errores y otros.
+
+![Alt text](https://raw.githubusercontent.com/oscarvalenzuelab/multidata-api-clients/master/imgs/monitoring_usage.png "Monitor Usage")
