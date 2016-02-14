@@ -16,7 +16,8 @@ Ingresa al sitio web http://api.multidatachile.com/portal/ y crea una cuenta, re
 
 ### Busca en el catálogo que API vas a utilizar
 Dependiendo de lo que buscas, existen diferentes APIs y métodos a utilizar, por ejemplo si buscas información de un auto, la API que buscas es "cars", por el contrario si deseas validar que un carnet de identidad es real, como para validar la identidad de una persona, entonces la API que te interesa es "services".
-http://api.multidatachile.com/portal/apis/
+
+![Alt text](https://raw.githubusercontent.com/oscarvalenzuelab/multidata-api-clients/master/imgs/view_documentation.png "View Documentation")
 
 ### Solicita tu llave (API KEY)
 Una vez que hayas decidido qué API vas a utilizar, simplemente usa el boton "Request API KEY", y luego de unas horas recibirás tu API Key por email.
