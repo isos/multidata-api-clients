@@ -1,27 +1,19 @@
 <?php
-/*************************/
-/* 	 MultiDATA Account   */
-/*************************/
-$usr		= "username";
-$pwd		= "password";
+$plate		= "ABCD00"; //Patente
+$key		= "56a68fe7c962eb000100012aab161bd8837b468955b01b03sde847ab"; //Se otorga en el portal de desarrolladores
+$api		= "cars"; //persons, cars, services
+$method		= "getplateinfo"; //Ver catalogo de APIs
 
-/*************************/
-/* Request configuration */
-/*************************/
-$format		= "json"; //json or xml
-$api		= "getperson"; //getperson, getcar or utils
-$value1		= "11111111-1";
-$value2		= "info";
-$host		= "http://www.multidata.cl";
-/******** -*- **********/
+$headr		= array();
+$headr[]	= 'Content-length: 0';
+$headr[]	= 'Content-type: application/json';
+$headr[]	= 'Authorization: '.$key;
+$url		= "http://api.multidatachile.com/".$api."/".$method."/".$plate;
 
-$url		= $host."/warpit/".$format."/apicatalogs/".$api."/".$value1."/";
-if(trim($value2)!=""){ $url		.= $value2."/"; }
 $crl		= curl_init();
+curl_setopt($crl, CURLOPT_HTTPHEADER, $headr);
 curl_setopt($crl, CURLOPT_URL, $url);
-curl_setopt($crl, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($crl, CURLOPT_USERPWD, $usr.":".$pwd);
+curl_setopt($crl, CURLOPT_POST, false);
 $rest		= curl_exec($crl);
 curl_close($crl);
-var_dump($rest);
-?>
+print_r($rest);
